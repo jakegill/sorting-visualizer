@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { algoSlice, arrLengthSlice } from "./navbarSlice";
+import { algoSlice, generateArraySlice } from "./navbarSlice";
 
 const store = configureStore({
 	reducer: {
 		algo: algoSlice.reducer,
-		length: arrLengthSlice.reducer,
+		array: generateArraySlice.reducer,
 	},
 });
 

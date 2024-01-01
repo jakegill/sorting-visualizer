@@ -4,17 +4,17 @@ export const algoSlice = createSlice({
 	name: "algo",
 	initialState: "merge",
 	reducers: {
-		selectAlgo: (state, action) => action.payload,
+		setAlgo: (state, action) => action.payload,
 	},
 });
 
-export const arrLengthSlice = createSlice({
-	name: "length",
-	initialState: 10,
+export const generateArraySlice = createSlice({
+	name: "array",
+	initialState: [],
 	reducers: {
-		setLength: (state, action) => action.payload,
+		setArray: (state, action) => action.payload,
 	},
 });
 
-export const { selectAlgo } = algoSlice.actions;
-export const { setLength } = arrLengthSlice.actions;
+export const { setAlgo } = algoSlice.actions;
+export const { setArray } = generateArraySlice.actions;

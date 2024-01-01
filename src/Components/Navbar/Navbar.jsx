@@ -1,34 +1,41 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectAlgo } from "../../redux/navbarSlice.js";
+import { useState } from "react";
+import { setAlgo } from "../../redux/navbarSlice.js";
 import { setLength } from "../../redux/navbarSlice.js";
+import { setArray } from "../../redux/navbarSlice.js";
 
 export default function Navbar() {
 	const dispatch = useDispatch();
 	const algo = useSelector((state) => state.algo);
+	const [length, setLength] = useState(100);
 
 	const handleAlgoClick = (e) => {
-		dispatch(selectAlgo(e.target.value));
+		dispatch(setAlgo(e.target.value));
 	};
 
 	const handleLengthSlider = (e) => {
-		setTimeout(() => {
-			//Prevent excessive rerendering
-			dispatch(setLength(e.target.value));
-		}, 1000);
+		setLength(e.target.value);
+	};
+
+	const handleGenerateArrayClick = () => {
+		const randomArrayLengthN = Array.from({ length }, () =>
+			Math.floor(Math.random() * 750)
+		);
+		dispatch(setArray(randomArrayLengthN));
 	};
 
 	return (
 		<>
 			<nav className='text-xl text-gray-200 flex justify-around items-center h-[12vh] border-b-2 border-blue-700 bg-gray-900'>
-				<button>Generate array</button>
+				<button onClick={handleGenerateArrayClick}>Generate array</button>
 				<div className='flex flex-col gap-1 justify-center items-center text-base'>
 					<label htmlFor='arrLength'>Array length</label>
 					<input
 						onChange={handleLengthSlider}
 						id='arrLength'
 						type='range'
-						min='10'
-						max='500'
+						min='100'
+						max='1200'
 					/>
 				</div>
 
